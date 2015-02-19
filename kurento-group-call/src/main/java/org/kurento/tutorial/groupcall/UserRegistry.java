@@ -50,9 +50,11 @@ public class UserRegistry {
 	}
 
 	public UserSession removeBySession(WebSocketSession session) {
-		final UserSession user = getBySession(session);
-		usersByName.remove(user.getName());
-		usersBySessionId.remove(session.getId());
+		UserSession user = getBySession(session);
+		if (user != null) {
+			usersByName.remove(user.getName());
+			usersBySessionId.remove(session.getId());
+		}
 		return user;
 	}
 
